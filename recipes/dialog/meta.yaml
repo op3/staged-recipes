@@ -16,8 +16,10 @@ build:
     ./configure \
       --prefix="$PREFIX" \
       --enable-nls \
-      --with-libtool \
-      --with-ncursesw
+      --with-shared \
+      --with-shlib-version=abi \
+      --with-ncursesw \
+      --disable-rpath-hack
     make -j "${CPU_COUNT:-1}"
     make install-full
     rm -f "$PREFIX/lib/libdialog.a"
@@ -29,7 +31,6 @@ requirements:
     - ncurses
     - make
     - pkg-config
-    - libtool
   host:
     - ncurses
 
